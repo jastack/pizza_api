@@ -7,9 +7,12 @@ class PizzasController < ApplicationController
 
   def show
     type = params[:id]
-    p type
     @pizzas = Pizza.search_for("#{type}")
-    p @pizzas
+    render json: @pizzas
+  end
+
+  def week
+    @pizzas = Pizza.upcoming
     render json: @pizzas
   end
 end

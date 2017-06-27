@@ -94,6 +94,10 @@ class Pizza < ApplicationRecord
     end
   end
 
+  def self.upcoming()
+    Pizza.where('date >= ?', DateTime.now)
+  end
+
 
 
 

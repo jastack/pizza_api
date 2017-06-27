@@ -26,8 +26,12 @@ MONTHS = {
 
 
 class Pizza < ApplicationRecord
+  include PgSearch
+
   validates :date, :pizza_type, presence: true
   validates :date, uniqueness: true
+
+  pg_search_scope :search_for, against: %i(pizza_type)
 
 
   def self.load_pizza_list
@@ -57,6 +61,53 @@ class Pizza < ApplicationRecord
     month = MONTHS[split[1]]
     day = split[2].to_i
     { month: month, day: day }
+  end
+
+  def self.parse_pizzas(arr)
+    n = arr.length
+    i = 0
+    while i < n
+      Pizza.parse_ingredients(arr[i])
+      i += 1
+    end
+  end
+
+  def self.parse_ingredients(pizza)
+    arr = pizza.pizza_type.split(",")
+    arr.each do |ingredient|
+      first_pass = ingredient#.downcase
+      second_pass = first_pass.split("!")
+      second_pass.each do |section|
+        if section.length > 2
+          third_pass = section
+          if third_pass[0] == " "
+            third_pass = third_pass[1..-1]
+          end
+          Ingredient.create(name: third_pass)
+        end
+      end
+      # ing = ingredient.downcase
+      # if ing[0] == " "
+      #   ing = ing[1..-1]
+      # end
+
+      # final_parse = ing.split("!")
+      # final_parse.each do |part|
+      #   if part.length > 2
+      #     if part[0] == " "
+      #       parsed = part[1..-1]
+      #     end
+      #     p parsed
+      #   end
+      # end
+      # Ingredient.create(name: ing)
+
+    end
+  end
+
+  def self.add_ingredients
+    arr = Pizza.all
+    Pizza.parse_ingredients(arr)
   end
 
 

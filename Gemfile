@@ -12,6 +12,7 @@ gem 'httparty'
 gem 'json'
 gem 'annotate'
 gem 'nokogiri'
+gem 'pg_search'
 gem 'pry-rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'

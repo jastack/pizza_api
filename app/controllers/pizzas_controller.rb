@@ -5,5 +5,11 @@ class PizzasController < ApplicationController
     render json: @index
   end
 
-
+  def show
+    type = params[:id]
+    p type
+    @pizzas = Pizza.search_for("#{type}")
+    p @pizzas
+    render json: @pizzas
+  end
 end

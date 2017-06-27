@@ -63,6 +63,11 @@ class Pizza < ApplicationRecord
     { month: month, day: day }
   end
 
+  def self.add_ingredients
+    arr = Pizza.all
+    Pizza.parse_pizzas(arr)
+  end
+
   def self.parse_pizzas(arr)
     n = arr.length
     i = 0
@@ -75,7 +80,7 @@ class Pizza < ApplicationRecord
   def self.parse_ingredients(pizza)
     arr = pizza.pizza_type.split(",")
     arr.each do |ingredient|
-      first_pass = ingredient#.downcase
+      first_pass = ingredient.downcase
       second_pass = first_pass.split("!")
       second_pass.each do |section|
         if section.length > 2
@@ -86,29 +91,10 @@ class Pizza < ApplicationRecord
           Ingredient.create(name: third_pass)
         end
       end
-      # ing = ingredient.downcase
-      # if ing[0] == " "
-      #   ing = ing[1..-1]
-      # end
-
-      # final_parse = ing.split("!")
-      # final_parse.each do |part|
-      #   if part.length > 2
-      #     if part[0] == " "
-      #       parsed = part[1..-1]
-      #     end
-      #     p parsed
-      #   end
-      # end
-      # Ingredient.create(name: ing)
-
     end
   end
 
-  def self.add_ingredients
-    arr = Pizza.all
-    Pizza.parse_ingredients(arr)
-  end
+
 
 
 end

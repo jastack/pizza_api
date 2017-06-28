@@ -19,8 +19,7 @@ class User < ApplicationRecord
     to_check = user.favorites
     todays_pizza = Pizza.today
     to_check.each do |fav|
-      p fav.ingredient
-      if todays_pizza.first.pizza_type.include?(fav.ingredient)
+      if todays_pizza.first.pizza_type.downcase.include?(fav.ingredient.downcase)
         return true
       end
     end

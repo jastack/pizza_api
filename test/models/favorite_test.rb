@@ -1,16 +1,17 @@
 # == Schema Information
 #
-# Table name: pies
+# Table name: favorites
 #
 #  id         :integer          not null, primary key
-#  pizza      :text
+#  ingredient :string
+#  user_id    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 require 'test_helper'
 
-class PieTest < ActiveSupport::TestCase
+class FavoriteTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

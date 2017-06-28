@@ -98,6 +98,10 @@ class Pizza < ApplicationRecord
     Pizza.where('date >= ?', DateTime.now)
   end
 
+  def self.today()
+    Pizza.where('date = ?', DateTime.now)
+  end
+
 
 
 

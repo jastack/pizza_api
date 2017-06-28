@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170617222349) do
+ActiveRecord::Schema.define(version: 20170628211206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorites", force: :cascade do |t|
+    t.string   "ingredient"
+    t.string   "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient"], name: "index_favorites_on_ingredient", unique: true, using: :btree
+  end
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
@@ -37,6 +45,13 @@ ActiveRecord::Schema.define(version: 20170617222349) do
     t.text     "pizza_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
 end

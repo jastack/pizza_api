@@ -31,7 +31,7 @@ class Pizza < ApplicationRecord
   validates :date, :pizza_type, presence: true
   validates :date, uniqueness: true
 
-  pg_search_scope :search_for, against: %i(pizza_type)
+  pg_search_scope :search_for, :against => :pizza_type, :using => {:tsearch => {:prefix => true}}
 
 
   def self.load_pizza_list

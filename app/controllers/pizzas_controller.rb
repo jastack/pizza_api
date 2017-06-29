@@ -12,7 +12,8 @@ class PizzasController < ApplicationController
   end
 
   def week
-    @pizzas = Pizza.upcoming
+    date = params[:date]
+    @pizzas = Pizza.this_week(date)
     render json: @pizzas
   end
 end

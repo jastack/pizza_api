@@ -101,6 +101,10 @@ class Pizza < ApplicationRecord
     Pizza.where('date >= ?', DateTime.now)
   end
 
+  def self.this_week(date)
+    Pizza.where('date >= ?', date)
+  end
+
   def self.today()
     Pizza.where('date = ?', DateTime.now)
   end

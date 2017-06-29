@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :ingredients
   scope '/api' do
     scope '/week' do
-      get '/' => 'pizzas#week'
+      get '/:date' => 'pizzas#week'
     end
   end
 

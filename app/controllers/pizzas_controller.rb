@@ -5,9 +5,9 @@ class PizzasController < ApplicationController
     render json: @index
   end
 
-  def show
-    type = params[:id]
-    @pizzas = Pizza.search_for("#{type}")
+  def search
+    type = params[:search]
+    @pizzas = Pizza.search_for(type.to_s)
     render json: @pizzas
   end
 

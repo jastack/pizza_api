@@ -97,7 +97,7 @@ class Pizza < ApplicationRecord
     end
   end
 
-  def self.upcoming()
+  def self.upcoming
     Pizza.where('date >= ?', DateTime.now)
   end
 
@@ -105,8 +105,8 @@ class Pizza < ApplicationRecord
     Pizza.where('date >= ?', date)
   end
 
-  def self.today()
-    Pizza.where('date = ?', DateTime.now)
+  def self.today(date)
+    Pizza.where('date = ?', date)
   end
 
 

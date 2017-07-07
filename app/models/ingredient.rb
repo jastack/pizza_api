@@ -9,7 +9,13 @@
 #
 
 class Ingredient < ApplicationRecord
+  include PgSearch
+
   validates :name, presence: true
-  validates :name, uniqueness: true 
+  validates :name, uniqueness: true
   has_and_belongs_to_many :pies
+
+  pg_search_scope :search_for, :against => :name, :using => {:tsearch => {:prefix => true}}
+
+  
 end

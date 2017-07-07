@@ -15,4 +15,10 @@ Rails.application.routes.draw do
     end
   end
 
+  scope '/api' do
+    scope '/ingredients' do
+      get '/:search' => 'ingredients#search'
+    end
+  end
+
 end

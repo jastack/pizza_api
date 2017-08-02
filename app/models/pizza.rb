@@ -50,7 +50,7 @@ class Pizza < ApplicationRecord
       date = DateTime.new(current_year, format_date[:month], format_date[:day])
       pizza = { date: date, pizza_type: pizza_type }
       pizza_entry = Pizza.find_by(date: date)
-      
+      p pizza_entry
       if pizza_entry
         pizza_entry.update(pizza_type: pizza_type)
       else
@@ -109,7 +109,7 @@ class Pizza < ApplicationRecord
   end
 
   def self.this_week(date)
-    Pizza.where('date >= ?', date)
+    Pizza.where('date >= ?', date).order(:id)
   end
 
   def self.today(date)

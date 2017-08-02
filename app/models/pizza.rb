@@ -49,7 +49,14 @@ class Pizza < ApplicationRecord
       format_date = Pizza.date_converter(pizza_date)
       date = DateTime.new(current_year, format_date[:month], format_date[:day])
       pizza = { date: date, pizza_type: pizza_type }
-      pizza_entry = Pizza.create(pizza)
+      pizza_entry = Pizza.find_by(date: date)
+      
+      if pizza_entry
+        pizza_entry.update(pizza_type: pizza_type)
+      else
+        pizza_entry = Pizza.create(pizza)
+      end
+
       if pizza_entry
         Pizza.parse_ingredients(pizza_entry)
       end

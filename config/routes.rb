@@ -21,4 +21,10 @@ Rails.application.routes.draw do
     end
   end
 
+  scope '/api' do
+    scope '/today' do
+      get '/:date' => 'pizzas#today'
+    end
+  end
+
 end

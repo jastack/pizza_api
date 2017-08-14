@@ -19,6 +19,17 @@ To see all pizzas in the database (with the date they were served):
 
 http://cheeseboardapi.herokuapp.com/pizzas
 
+### Today's pizza
+
+To see just today's pizza, use:
+
+'api/today/year-month-day'
+
+for example, to view the pizza for Tuesday, August 15, 2017, visit:
+
+http://cheeseboardapi.herokuapp.com/api/today/2017-8-15
+
+
 ### All pizzas from a given date forward
 
 To see all pizzas from a given date forward use:
